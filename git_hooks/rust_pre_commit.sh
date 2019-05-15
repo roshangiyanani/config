@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Pre-commit hook for cargo projects.
 # Stashes any not commited changes, and then checks that:
