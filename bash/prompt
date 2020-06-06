@@ -22,10 +22,10 @@ __prompt_command() {
 
 	if [ $EXIT != 0 ]; then
 	# last command failed
-		PS1+="❌"
+		PS1+="❌ "
 	else
 	# last command succeeded
-		PS1+="✅"
+		PS1+="✅ "
 	fi
 
 	# user@computer:WorkingDirectory$ 
