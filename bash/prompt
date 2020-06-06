@@ -1,6 +1,6 @@
 # -----------------------------TERMINAL COLOR SETTINGS-------------------------
 # To enable, add the following to your bash profile:
-# COLOR_FILE_LOC="~/config/bash/prompt"
+# COLOR_FILE_LOC="$HOME/config/bash/prompt" # the location of this file
 # if [ -f "$COLOR_FILE_LOC" ]; then
 #     source "$COLOR_FILE_LOC";
 # else
