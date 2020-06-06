@@ -7,13 +7,21 @@
 #     printf "Could not find file at '$COLOR_FILE_LOC' to set prompt.\n" 1>&2;
 # fi;
 
+PROMPT_COMMAND=__prompt_command
 
-# Set prompt color
-green=$(tput setaf 2);
-yellow=$(tput setaf 3);
-cyan=$(tput setaf 6);
-reset=$(tput sgr0);
+__prompt_command() {
+	# Set prompt color
+	local green=$(tput setaf 2);
+	local yellow=$(tput setaf 3);
+	local cyan=$(tput setaf 6);
+	local reset=$(tput sgr0);
 
-# user@computer:WorkingDirectory$ 
-PS1="\[$green\]\u\[$reset\]@\[$yellow\]\h\[$reset\]:\[$cyan\]\W\[$reset\]$ ";
-export PS1;
+	# user@computer:WorkingDirectory$ 
+	PS1=""
+        PS1+="\[$green\]\u\[$reset\]"	# user
+	PS1+="@"
+	PS1+="\[$yellow\]\h\[$reset\]"  # computer
+	PS1+=":"
+	PS1+="\[$cyan\]\W\[$reset\]"	# working directory
+	PS1+="$ "			# prompt
+}
