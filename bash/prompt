@@ -10,14 +10,25 @@
 PROMPT_COMMAND=__prompt_command
 
 __prompt_command() {
+	local EXIT="$?"	# needs to be first
+	PS1=""		# reset prompt
+
 	# Set prompt color
+	local red=$(tput setaf 1);
 	local green=$(tput setaf 2);
 	local yellow=$(tput setaf 3);
 	local cyan=$(tput setaf 6);
 	local reset=$(tput sgr0);
 
+	if [ $EXIT != 0 ]; then
+	# last command failed
+		PS1+="❌"
+	else
+	# last command succeeded
+		PS1+="✅"
+	fi
+
 	# user@computer:WorkingDirectory$ 
-	PS1=""
         PS1+="\[$green\]\u\[$reset\]"	# user
 	PS1+="@"
 	PS1+="\[$yellow\]\h\[$reset\]"  # computer
