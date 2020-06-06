@@ -1,0 +1,19 @@
+# -----------------------------TERMINAL COLOR SETTINGS-------------------------
+# To enable, add the following to your bash profile:
+# COLOR_FILE_LOC="~/config/bash/prompt"
+# if [ -f "$COLOR_FILE_LOC" ]; then
+#     source "$COLOR_FILE_LOC";
+# else
+#     printf "Could not find file at '$COLOR_FILE_LOC' to set prompt.\n" 1>&2;
+# fi;
+
+
+# Set prompt color
+green=$(tput setaf 2);
+yellow=$(tput setaf 3);
+cyan=$(tput setaf 6);
+reset=$(tput sgr0);
+
+# user@computer:WorkingDirectory$ 
+PS1="\[$green\]\u\[$reset\]@\[$yellow\]\h\[$reset\]:\[$cyan\]\W\[$reset\]$ ";
+export PS1;
