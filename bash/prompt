@@ -1,10 +1,10 @@
 # -----------------------------TERMINAL COLOR SETTINGS-------------------------
 # To enable, add the following to your bash profile:
-# COLOR_FILE_LOC="$HOME/config/bash/prompt" # the location of this file
-# if [ -f "$COLOR_FILE_LOC" ]; then
-#     source "$COLOR_FILE_LOC";
+# COLOR_FILE_LOC="$HOME/config/bash/" # the location of this file
+# if [ -f "$COLOR_FILE_LOC/prompt" ]; then
+#     source "$COLOR_FILE_LOC/prompt";
 # else
-#     printf "Could not find file at '$COLOR_FILE_LOC' to set prompt.\n" 1>&2;
+#     printf "Could not find file at '$COLOR_FILE_LOC/prompt' to set prompt.\n" 1>&2;
 # fi;
 
 PROMPT_COMMAND=__prompt_command
@@ -34,5 +34,43 @@ __prompt_command() {
 	PS1+="\[$yellow\]\h\[$reset\]"  # computer
 	PS1+=":"
 	PS1+="\[$cyan\]\W\[$reset\]"	# working directory
-	PS1+="$ "			# prompt
+	PS1+="$(get_holiday_emoji || echo '$ ')"			# prompt
 }
+
+get_holiday_emoji() {
+	local today=$(date +"%m/%d")
+	
+	local found_match=false
+	for i in "${!holiday_dates[@]}"; do
+		if [ "$today" = "${holiday_dates[$i]}" ]; then
+			found_match=true
+			printf "${holiday_emojis[$i]}"
+		fi
+	done
+
+	if [ "$found_match" = true ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+if [ -f "$COLOR_FILE_LOC/holidays.csv" ]; then
+	holiday_dates=()
+	holiday_emojis=()
+
+	OLDIFS=$IFS
+	IFS=','
+	while read date emoji holiday; do
+		# echo "Date: $date"
+		# echo "Emoji: $emoji"
+		# echo "Holiday: $holiday"
+
+		holiday_dates+=( "$date" )
+		holiday_emojis+=( "$emoji" )
+	done < "$COLOR_FILE_LOC/holidays.csv"
+	IFS="$OLDIFS"
+else
+	printf "Could not find holidays file at '$COLOR_FILE_LOC/holidays.csv'.\n" 1>&2;
+fi
+
