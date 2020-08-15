@@ -28,6 +28,9 @@ __prompt_command() {
 		PS1+="✅ "
 	fi
 
+	# envs
+	PS1+="$(get_virtualenv) "
+
 	# user@computer:WorkingDirectory$ 
         PS1+="\[$green\]\u\[$reset\]"	# user
 	PS1+="@"
@@ -36,6 +39,26 @@ __prompt_command() {
 	PS1+="\[$cyan\]\W\[$reset\]"	# working directory
 	PS1+="$(get_holiday_emoji || echo '$ ')"			# prompt
 }
+
+# ---------- virtualenv prompt -----------------------------------------------
+# https://stackoverflow.com/questions/10406926/how-do-i-change-the-default-virtualenv-prompt
+
+get_virtualenv() {
+	if [[ -n "$VIRTUAL_ENV" ]]; then
+		# Strip out the path and just leave the env name
+		venv="${VIRTUAL_ENV##*/}"
+		printf "(venv: $venv)"
+		return 0
+	fi
+
+	return 1
+}
+
+# disable the default virtualenv prompt change
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+
+# ---------- holiday emoji prompt --------------------------------------------
 
 get_holiday_emoji() {
 	local today=$(date +"%m/%d")
