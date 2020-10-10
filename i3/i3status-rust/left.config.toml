@@ -1,0 +1,64 @@
+[theme]
+name = "slick"
+[theme.overrides]
+idle_bg = "#123456"
+idle_fg = "#abcdef"
+
+[icons]
+name = "awesome5"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "🖥️"
+format = "{alias} {free} {unit}"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block = "disk_space"
+path = "/home"
+alias = "🏠"
+format = "{alias} {free} {unit}"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block = "disk_space"
+path = "/media/alce"
+alias = "🖴"
+info_type = "available"
+unit = "TB"
+interval = 20
+warning = 0.75
+alert = 0.25
+
+[[block]]
+block = "networkmanager"
+device_format = "{icon} {ips}"
+
+# [[block]]
+# block = "net"
+# device = "wls1"
+# speed_digits = 2
+# format = "{signal_strength} {ssid} {speed_down} {speed_up}" 
+
+# [[block]]
+# block = "net"
+# device = "eno1"
+# speed_digits = 3
+# format = "{speed_down} {speed_up}" 
+
+[[block]]
+block = "time"
+interval = 1
+format = "%R"
+
+[[block]]
+block = "sound"
+step_width = 2
+
