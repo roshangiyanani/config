@@ -8,25 +8,29 @@ idle_fg = "#abcdef"
 name = "awesome5"
 
 [[block]]
-block = "music"
-
-[[block]]
 block = "cpu"
 interval = 1
 format = "E5-1650v3 {barchart} {utilization}% {frequency}Ghz"
+
+[[block]]
+block = "temperature"
+collapsed = false
+good = 50
+idle = 55
+info = 60
+warning = 70
+# alert = 80
+
+[[block]]
+block = "load"
+interval = 1
+format = "1m: {1m} 5m: {5m}"
 
 [[block]]
 block = "memory"
 display_type = "memory"
 format_mem = "M: {MUg}Gb | C: {Cg}Gb | S: {SUg}Gb"
 clickable = false
-
-[[block]]
-block = "net"
-device = "eno1"
-interval = 2
-speed_digits = 2
-format = "{graph_down} {speed_down} {graph_up} {speed_up}" 
 
 [[block]]
 block = "time"

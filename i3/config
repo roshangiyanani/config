@@ -191,7 +191,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 # big center monitor
 bar {
-	font pango:DejaVu Sans Mono, FontAwesome 12
+	font pango:DejaVu Sans Mono, FontAwesome 10.5
 	output primary
 	status_command i3status-rs ~/config/i3/i3status-rust/center.config.toml
 	position bottom
@@ -208,7 +208,7 @@ bar {
 
 # left narrow monitor
 bar {
-	font pango:DejaVu Sans Mono, FontAwesome 10.5
+	font pango:DejaVu Sans Mono, FontAwesome 11
 	output DP-0.8
 	status_command i3status-rs ~/config/i3/i3status-rust/left.config.toml
 	position bottom
@@ -225,7 +225,7 @@ bar {
 
 # right narrow monitor
 bar {
-	font pango:DejaVu Sans Mono, FontAwesome 12
+	font pango:DejaVu Sans Mono, FontAwesome 11
 	output DP-0.1.8
 	status_command i3status-rs ~/config/i3/i3status-rust/right.config.toml
 	position bottom
